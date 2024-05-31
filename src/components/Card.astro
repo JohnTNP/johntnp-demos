@@ -3,24 +3,41 @@ interface Props {
 	title: string;
 	body: string;
 	href: string;
+	img_url?: string;
 	source_link?: string;
 }
 
-const { href, title, body, source_link } = Astro.props;
+const { href, title, body, img_url } = Astro.props;
 ---
 
 	<li class="link-card">
 		<a href={href}>
-			<h2>
-				{title}
-				<span>&rarr;</span>
-			</h2>
-			<p>
-				{body}
-			</p>
+			<div>
+				<h2>
+					{title}
+					<span>&rarr;</span>
+				</h2>
+				<p>
+					{body}
+				</p>
+			</div>
+			{img_url &&
+				<img src={img_url}/>
+			}
 		</a>
 	</li>
 <style>
+	a {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		justify-content: space-around;
+	}
+	img {
+		border-radius: 1rem;
+		max-width: 60%;
+		margin-left: 20%;
+	}
 	.link-card {
 		list-style: none;
 		display: flex;
